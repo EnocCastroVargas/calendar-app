@@ -41,9 +41,17 @@ export const calendarSlice = createSlice({
                 return event;
             });
         },
+        onDeleteEvent: (state) => {
+            if ( state.activeEvent ) {
+                //* Se regresa todos los eventos cuyo id sea diferente al de la nota activa
+                //* Entonces físicamente se elimina del arreglo
+                state.events = state.events.filter( event => event._id !== state.activeEvent._id );
+                state.activeEvent = null;
+            };
+        },
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { onSetActiveEvent, onAddNewEvent, onUpdateEvent } = calendarSlice.actions;
+export const { onSetActiveEvent, onAddNewEvent, onUpdateEvent, onDeleteEvent } = calendarSlice.actions;
