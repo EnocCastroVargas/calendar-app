@@ -11,7 +11,7 @@ export const AppRouter = () => {
     // const authStatus = 'not-authenticated'; //authenticated not-authenticated
    
     useEffect(() => {
-      checkAuthToken()
+      checkAuthToken();
     }, []);
     
    
