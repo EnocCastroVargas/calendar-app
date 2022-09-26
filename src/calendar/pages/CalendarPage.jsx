@@ -33,7 +33,6 @@ export const CalendarPage = () => {
     };
     
     const onSelect = ( event ) => {
-        // console.log({ click: event });
         setActiveEvent( event );
     };
     
