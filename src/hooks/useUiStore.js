@@ -13,7 +13,7 @@ export const useUiStore = () => {
     const openDateModal = ( ) => {
         dispatch( onOpenDateModal() );     
     };
-  
+
     const closeDateModal = ( ) => {
         dispatch( onCloseDateModal() );     
     };

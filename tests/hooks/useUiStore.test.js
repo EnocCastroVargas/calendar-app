@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { renderHook } from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { useUiStore } from '../../src/hooks/useUiStore';
 import { uiSlice } from '../../src/store';
@@ -21,7 +21,7 @@ describe('Pruebas en el useUiStore', () => {
     
     test('debe de regresar los valores por defecto', () => {
 
-        const mockStore = getMockStore({ isDateModalOpen: false }) 
+        const mockStore = getMockStore({ isDateModalOpen: false });
         
         const { result } = renderHook( () => useUiStore(), {
             wrapper: ({ children }) => <Provider store={ mockStore }>{ children }</Provider>
@@ -33,6 +33,24 @@ describe('Pruebas en el useUiStore', () => {
             openDateModal: expect.any(Function),
             toggleDateModal: expect.any(Function),
         });
+    });
+
+    test('openDateModel debe de colocar true en el isDateModalOpen', () => {
+        
+        const mockStore = getMockStore({ isDateModalOpen: false });
+        const { result } = renderHook( () => useUiStore(), {
+            wrapper: ({ children }) => <Provider store={ mockStore }>{ children }</Provider>
+        });
+
+        const { openDateModal } = result.current;
+        
+        act( () => {
+            openDateModal()
+        });
+        
+        expect( result.current.isDateModalOpen ).toBeTruthy();
+        
+
     });
 
 });
