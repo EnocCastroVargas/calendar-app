@@ -2,19 +2,17 @@ import { useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { LoginPage } from '../auth';
 import { CalendarPage } from '../calendar';
-import { getEnvVariables } from '../helpers';
 import { useAuthStore } from '../hooks';
 
 export const AppRouter = () => {
 
     const { status, checkAuthToken } = useAuthStore();
     // const authStatus = 'not-authenticated'; //authenticated not-authenticated
-   
+
     useEffect(() => {
-      checkAuthToken();
+        checkAuthToken();
     }, []);
     
-   
     if ( status === 'checking' ) {
         return (
             <h3>Cargando...</h3>
